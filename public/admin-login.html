@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Login | MFA Auth</title>
+  <meta name="theme-color" content="#eef1f6">
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <h2>Administrator Login</h2>
+    <p class="subtitle">Restricted administrative access</p>
+
+    <div id="message" class="message" role="alert"></div>
+
+    <form id="adminLoginForm" novalidate>
+      <label for="adminEmail">Admin Email</label>
+      <input type="email" id="adminEmail" placeholder="Administrator email" autocomplete="username" required>
+
+      <label for="adminPassword">Password</label>
+      <input type="password" id="adminPassword" placeholder="Password" autocomplete="current-password" required>
+
+      <div class="forgot-row"><a href="/forgot-password.html?type=admin">Forgot admin password?</a></div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-login" id="adminLoginBtn">Admin Login</button>
+      </div>
+    </form>
+
+    <div class="secondary-links">
+      <a href="/login.html">Back to user login</a>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>App.initAdminLoginPage();</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | MFA Auth</title>
+  <meta name="theme-color" content="#eef1f6">
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="auth-container">
+
+    <div class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+
+    <!-- ROLE SELECTION -->
+    <div id="roleSelection">
+      <h2>Welcome</h2>
+      <p class="subtitle">Choose how you want to sign in</p>
+
+      <div id="message" class="message" role="alert"></div>
+
+      <div class="role-options">
+
+        <button type="button" class="role-card" id="userRoleBtn">
+          <span class="role-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
+          <span class="role-title">User Login</span>
+          <span class="role-description">
+            Sign in to your user account
+          </span>
+        </button>
+
+        <button type="button" class="role-card" id="adminRoleBtn">
+          <span class="role-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8.3-8 9-4.8-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="role-title">Admin Login</span>
+          <span class="role-description">
+            Sign in to the administrator panel
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- USER LOGIN / SIGNUP -->
+    <div id="userAuthSection" style="display: none;">
+
+      <button type="button" class="back-btn" id="backToRolesBtn">
+        ← Back
+      </button>
+
+      <h2>User Account</h2>
+      <p class="subtitle">Secure login with Google Authenticator</p>
+
+      <div id="userMessage" class="message" role="alert"></div>
+
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="login">
+          Login
+        </button>
+
+        <button type="button" class="tab" data-tab="signup">
+          Sign Up
+        </button>
+      </div>
+
+
+      <!-- LOGIN -->
+      <form id="loginPanel" class="panel active" novalidate>
+
+        <label for="loginEmail">Email</label>
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Email ID"
+          autocomplete="email"
+          required
+        >
+
+        <label for="loginPassword">Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        >
+
+        <div class="forgot-row">
+          <a href="/forgot-password.html?type=user">
+            Forgot password?
+          </a>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-login" id="loginBtn">
+            Login
+          </button>
+
+          <button type="button" class="btn-reset" id="loginResetBtn">
+            Reset
+          </button>
+        </div>
+
+      </form>
+
+
+      <!-- SIGN UP -->
+      <form id="signupPanel" class="panel" novalidate>
+
+        <label for="userName">Full Name</label>
+        <input
+          type="text"
+          id="userName"
+          placeholder="Full Name"
+          autocomplete="name"
+          required
+        >
+
+        <label for="userEmail">Email</label>
+        <input
+          type="email"
+          id="userEmail"
+          placeholder="Email ID"
+          autocomplete="email"
+          required
+        >
+
+        <label for="userPassword">Password</label>
+        <input
+          type="password"
+          id="userPassword"
+          placeholder="Password (min 8 characters)"
+          autocomplete="new-password"
+          required
+        >
+
+        <div class="hint">
+          After registration, verify your email with a one-time code. Then you'll set up Google Authenticator.
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-signup" id="signupBtn">
+            Create Account
+          </button>
+
+          <button type="button" class="btn-reset" id="signupResetBtn">
+            Reset
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <script src="/app.js"></script>
+
+  <script>
+    App.initLoginPage();
+  </script>
+
+</body>
+</html>

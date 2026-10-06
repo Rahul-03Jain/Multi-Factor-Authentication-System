@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Up MFA | MFA Auth</title>
+  <meta name="theme-color" content="#eef1f6">
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="auth-container wide">
+    <div class="brand-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+    <h2>Set Up Google Authenticator</h2>
+    <p class="subtitle">Scan the QR code and enter the 6-digit code shown in your authenticator app.</p>
+
+    <div id="message" class="message" role="alert"></div>
+    <div id="setupLoading" class="center-text">Generating your secure setup...</div>
+
+    <div id="setupContent" class="hidden">
+      <div class="qr-wrap">
+        <img id="qrCode" alt="Google Authenticator setup QR code">
+      </div>
+
+      <p class="center-text small">Account: <strong id="accountEmail">—</strong></p>
+
+      <details class="secret-box">
+        <summary>Can't scan? Enter setup key manually</summary>
+        <code id="secretKey">—</code>
+      </details>
+
+      <form id="setupForm" novalidate>
+        <label for="setupCode">Authenticator code</label>
+        <input id="setupCode" class="otp-input" inputmode="numeric" maxlength="6"
+               autocomplete="one-time-code" placeholder="000000" required>
+
+        <div class="button-group">
+          <button type="submit" class="btn-login" id="setupBtn">Verify & Enable MFA</button>
+          <a href="/login.html" class="btn btn-link">Back to login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>App.initSetupPage();</script>
+</body>
+</html>

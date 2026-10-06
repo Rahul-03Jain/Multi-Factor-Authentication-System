@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | MFA Auth</title>
+  <meta name="theme-color" content="#eef1f6">
+  <script src="/theme.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="dashboard-page">
+  <div class="admin-container">
+    <div class="admin-header">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p class="subtitle left" id="adminWelcome">Loading...</p>
+      </div>
+      <button class="btn-danger small-btn" id="adminLogoutBtn">Logout</button>
+    </div>
+
+    <div id="message" class="message" role="alert"></div>
+
+    <section class="admin-section">
+      <div class="section-title">
+        <h2>User Management</h2>
+        <button class="btn-secondary small-btn" id="refreshUsersBtn">Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>MFA</th>
+              <th>Last Login</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody">
+            <tr><td colspan="6" class="center-text">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="admin-section">
+      <div class="section-title">
+        <h2>Audit Trail</h2>
+        <button class="btn-secondary small-btn" id="refreshAuditBtn">Refresh</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Actor</th>
+              <th>Action</th>
+              <th>User</th>
+              <th>IP</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="auditBody">
+            <tr><td colspan="6" class="center-text">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+  <script>App.initAdminDashboardPage();</script>
+</body>
+</html>
