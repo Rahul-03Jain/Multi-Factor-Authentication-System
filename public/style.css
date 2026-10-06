@@ -28,6 +28,10 @@
   --info-bg: #e6eefb; --info-text: #1d4a8a; --info-border: #bdd2f0;
 
   --shadow: 0 1px 2px rgba(23, 32, 51, 0.05), 0 8px 28px rgba(23, 32, 51, 0.07);
+
+  /* Tint laid over the background photo. Lower the alpha to show more of the image. */
+  --bg-overlay: linear-gradient(rgba(238, 241, 246, 0.72), rgba(238, 241, 246, 0.86));
+  --card-bg: rgba(255, 255, 255, 0.94);
   --radius: 14px;
   --radius-sm: 8px;
 
@@ -62,6 +66,9 @@
   --info-bg: #14233d; --info-text: #9bbdf0; --info-border: #243e66;
 
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 32px rgba(0, 0, 0, 0.35);
+
+  --bg-overlay: linear-gradient(rgba(10, 13, 21, 0.78), rgba(10, 13, 21, 0.9));
+  --card-bg: rgba(21, 26, 38, 0.94);
 }
 
 /* ==========================================================
@@ -87,10 +94,23 @@ body {
   transition: background-color 0.2s, color 0.2s;
 }
 
+/* Full-page background photo, fixed behind everything */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    var(--bg-overlay),
+    url('/images/plant-bg.jpg') center / cover no-repeat;
+}
+
 .auth-container,
 .dashboard-container,
 .admin-container {
-  background: var(--surface);
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -547,6 +567,57 @@ tbody tr:hover { background: var(--surface-2); }
 tr:last-child td { border-bottom: none; }
 
 /* ==========================================================
+   Password show/hide
+   ========================================================== */
+.pw-field { position: relative; margin: 0 0 16px; }
+.pw-field input { margin: 0; padding-right: 46px; }
+
+.pw-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: none;
+  color: var(--text-muted);
+  border-radius: 6px;
+}
+
+.pw-toggle:hover { color: var(--text); background: var(--surface-2); }
+
+.pw-toggle svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ==========================================================
+   Loading spinner on buttons (shown while a request is running)
+   ========================================================== */
+button:disabled:not(.tab):not(.link-button):not(.btn-link)::before {
+  content: '';
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.55em;
+  vertical-align: -0.12em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ==========================================================
    Theme toggle
    ========================================================== */
 .theme-toggle {
@@ -591,4 +662,6 @@ tr:last-child td { border-bottom: none; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+  /* keep the spinner visible but slow it down instead of removing it */
+  button:disabled::before { animation-duration: 2s !important; }
 }
